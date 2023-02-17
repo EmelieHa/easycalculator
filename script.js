@@ -3,7 +3,10 @@ let operator;
 let firstNum;
 let secondNum;
 let sum;
+let operandSign;
 document.getElementById("clear").addEventListener('click', clear);
+let equal = document.getElementById("equals");
+equal.addEventListener('click', equalFunc);
 let displayArr = [];
 let numArr = [];
 
@@ -20,8 +23,8 @@ return;
     displayArr.push(valueNum);
   }
     document.getElementById('display').value = displayArr.join('');
-
 }
+
 
 function clear() {
 document.getElementById('display').value = "";
@@ -33,16 +36,12 @@ document.getElementById('display').value = "";
 function calculate(num1, num2, operand) {
     if (operand === '+') {
         sum = parseInt(num1) + parseInt(num2);
-      
     } else if (operand === '-') {
         sum = parseInt(num1) - parseInt(num2);
-     
     } else if (operand === '*') {
        sum = parseInt(num1) * parseInt(num2);
-      
     } else {
         sum = parseInt(num1) / parseInt(num2);
-    
     }
   document.getElementById('display').value = sum;
 }
@@ -57,26 +56,19 @@ times.addEventListener('click', pushFunc.bind(this, '*'));
 let divided = document.getElementById('/');
 divided.addEventListener('click', pushFunc.bind(this, '/'));
 
-let operandSign;
 
 function pushFunc(sign) {
   numArr.push(displayArr.join(''));
 displayArr = [];
 operandSign = sign;
   document.getElementById('display').value = sign;
-
 } 
 
-
-let equal = document.getElementById("equals");
-equal.addEventListener('click', equalFunc);
 
 function equalFunc() {
   numArr.push(displayArr.join(''));
 firstNum = numArr[0];
  secondNum = numArr[1];
- console.log(numArr, operandSign);
- calculate(firstNum, secondNum, operandSign); 
-  
+ calculate(firstNum, secondNum, operandSign);  
 }
 
